@@ -16,11 +16,11 @@ export default class RefDemo extends React.Component {
 
   render() {
     return (
-      <>
+      <React.Fragment>
         <p  className="text-success" ref="stringRef">span1</p>
         <p ref={ele => (this.methodRef = ele)}>span3</p>
         <p ref={this.objRef}>span3</p>
-      </>
+      </React.Fragment>
     )
   }
 }

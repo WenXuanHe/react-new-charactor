@@ -13,7 +13,7 @@ export default function App() {
   }, [count === 3]);
   const data = "京程一灯";
   return (
-    <>
+    <React.Fragment>
       <span>{double}</span>
       <input
         type="button"
@@ -21,6 +21,6 @@ export default function App() {
         value="修改count"
       />
       <Counter data={data} />
-    </>
+    </React.Fragment>
   );
 }

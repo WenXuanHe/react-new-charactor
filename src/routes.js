@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 //普通的react组件
-import ComponentDemo from './demos/components/componentdemo';
+import ComponentDemo from './demos/components/componentdemo1';
 //react纯组件
 import PureDemo from './demos/components/puredemo';
 //函数组件
@@ -23,9 +23,11 @@ import ErrorDemo from './demos/error';
 //生命周期
 import LifecycleDemo from './demos/lifecycle';
 //react hooks
-import HookDemo from './demos/hooks/ref';
+import HookDemo from './demos/hooks/index';
 //react fiber
 import FiberDemo from './demos/setstate';
+
+import Redux from './demos/redux/index'
 //react-call-return 父组件根据子组件的回调
 //复用已有组件 ReactDOM.hydrate
 export default (
@@ -43,5 +45,6 @@ export default (
     <Route path="/lifecycledemo" component={LifecycleDemo} />
     <Route path="/hookdemo" component={HookDemo} />
     <Route path="/fiberdemo" component={FiberDemo} />
+    <Route path="/redux" component={Redux} />
   </React.Fragment>
 )

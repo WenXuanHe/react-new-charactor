@@ -39,11 +39,11 @@ export default () => {
   }, [count]);
 
   return (
-    <>
+    <React.Fragment>
       <input type="button" value="增加count" onClick={increment} />
       <span>当前count: {count}</span>
       <input type="button" value="减少count" onClick={decrement} />
-    </>
+    </React.Fragment>
   );
 };
 // redux 原理

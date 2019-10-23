@@ -29,7 +29,7 @@ export default function App() {
     console.log("Click");
   }, []);
   return (
-    <>
+    <React.Fragment>
       <span>{count}</span>
       <input
         type="button"
@@ -37,6 +37,6 @@ export default function App() {
         value="修改count"
       />
       <Counter onClick={onClick}/>
-    </>
+    </React.Fragment>
   );
 }

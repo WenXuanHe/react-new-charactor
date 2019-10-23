@@ -35,13 +35,13 @@ const createFetcher = promiseTask => {
 };
 const requestData = createFetcher(fetchApi);
 function SuspenseComp() {
-  const { error, data } = useFetch("a.php");
-  // console.log("数据📚",data)
-  if (error) return <span>出错了/(ㄒoㄒ)/~~</span>;
-  if (!data) return null;
-  return <span>RemoteData:{data.title}</span>;
-  // const data = requestData();
-  // return <p className="text-warning">{data}</p>;
+  // const { error, data } = useFetch("http://localhost:8080/test.json");
+  // // console.log("数据📚",data)
+  // if (error) return <span>出错了/(ㄒoㄒ)/~~</span>;
+  // if (!data) return null;
+  // return <span>RemoteData:{data.title}</span>;
+  const data = requestData();
+  return <p className="text-warning">{data}</p>;
 }
 
 export default () => (

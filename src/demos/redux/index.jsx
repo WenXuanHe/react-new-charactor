@@ -7,7 +7,7 @@ const { Provider, store } = createStore({
 function timeOutAdd(a) {
     return new Promise(cb => setTimeout(() => cb(a + 1), 300));
 }
-const actionOfAdd = () => async (dispatch, ownState) => {
+const actionOfAdd = async (dispatch, ownState) => {
     const age = await timeOutAdd(ownState.age);
     dispatch({
         type: "addNum",
@@ -26,7 +26,7 @@ const actionOfAdd = () => async (dispatch, ownState) => {
 // }
 function Button() {
     function handleAdd() {
-        store.dispatch(actionOfAdd())
+        store.dispatch(actionOfAdd)
     }
     return <button onClick={handleAdd}>点击增加</button>
 }

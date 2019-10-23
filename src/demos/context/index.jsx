@@ -2,7 +2,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const { Provider, Consumer } = React.createContext("default");
+const Context = React.createContext("default");
+const { Provider, Consumer } = Context
 
 class Parent extends React.Component {
   state = {
@@ -14,9 +15,9 @@ class Parent extends React.Component {
   //     return { value: this.state.newContext, yideng: this.state.yideng };
   //   }
   render() {
-    //    <React.Fragment> ==  <>
+    //    <React.Fragment> ==  <React.Fragment>
     return (
-      <>
+      <React.Fragment>
         <div>
           <label className="text-warning">父节点=> newContext:</label>
           <input
@@ -39,7 +40,7 @@ class Parent extends React.Component {
         >
           {this.props.children}
         </Provider>
-      </>
+      </React.Fragment>
     );
   }
 }
@@ -55,16 +56,17 @@ function Child(props, context) {
 }
 
 class Child2 extends React.Component {
-  static contextTypes = {
-    yideng: PropTypes.string
-  };
+  // static contextTypes = {
+  //   yideng: PropTypes.string
+  // };
+  static contextType = Context
   render() {
-    // return <p>字符串a: {this.context.yideng}</p>;
-    return (
-      <Consumer>
-        {value => <p className="text-info">子节点=> yideng: {value.yideng}</p>}
-      </Consumer>
-    );
+    return <p>字符串a: {this.context.yideng}</p>;
+    // return (
+    //   <Consumer>
+    //     {value => <p className="text-info">子节点=> yideng: {value.yideng}</p>}
+    //   </Consumer>
+    // );
   }
 }
 Child.contextTypes = {

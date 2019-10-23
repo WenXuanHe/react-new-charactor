@@ -18,11 +18,11 @@ const ContextComp = (props, ref) => {
 export default function App() {
   const [name, setName] = useState("京程一灯");
   return (
-    <>
+    <React.Fragment>
       <input type="text" value={name} onChange={e => setName(e.target.value)} />
       <TestContext.Provider value={name}>
         <ContextComp />
       </TestContext.Provider>
-    </>
+    </React.Fragment>
   );
 }

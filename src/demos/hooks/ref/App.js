@@ -25,8 +25,8 @@ export default function App() {
     };
   }, []);
   return (
-    <>
+    <React.Fragment>
       <ContextComp ref={ref} />
-    </>
+    </React.Fragment>
   );
 }

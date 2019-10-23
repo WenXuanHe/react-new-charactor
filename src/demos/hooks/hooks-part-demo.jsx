@@ -72,13 +72,13 @@ import React, {
     }, [compName]) // 演示没有`[compName]`每次Comp都会调用effect
   
     return (
-      <>
+      <React.Fragment>
         <input type="text" value={name} onChange={e => setName(e.target.value)} />
         <Comp name={compName} onClick={compCallback} />
         <TestContext.Provider value={name}>
           <ContextComp ref={ref} />
         </TestContext.Provider>
-      </>
+      </React.Fragment>
     )
   }
   

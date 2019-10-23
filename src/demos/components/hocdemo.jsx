@@ -85,9 +85,9 @@ Goodbye = wrapWithUsername(Goodbye);
 class Greeting extends Component {
   render() {
     return (
-      <>
+      <React.Fragment>
         <Welcome /> <Goodbye />
-      </>
+      </React.Fragment>
     );
   }
 }
