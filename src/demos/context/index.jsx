@@ -2,6 +2,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+// 1. React.createContext  上下文
+// Provider 生产者 , Consumer  消费者 3层
+// 组件
+//   Provider  name
+//     子组件
+//       子组件  
+//         Consumer
+//           子组件  name
+
 const Context = React.createContext("default");
 const { Provider, Consumer } = Context
 
@@ -15,6 +24,7 @@ class Parent extends React.Component {
   //     return { value: this.state.newContext, yideng: this.state.yideng };
   //   }
   render() {
+    // this.props.children
     //    <React.Fragment> ==  <React.Fragment>
     return (
       <React.Fragment>
@@ -45,9 +55,13 @@ class Parent extends React.Component {
   }
 }
 
+
 function Child(props, context) {
   return (
     <Consumer>
+      {/* consumer内是一个函数 */}
+      {/* react组件 */}
+      {/* this.props.children(value) */}
       {value => (
         <p className="text-warning">子节点=> newContext: {value.newContext}</p>
       )}
@@ -60,7 +74,9 @@ class Child2 extends React.Component {
   //   yideng: PropTypes.string
   // };
   static contextType = Context
+  
   render() {
+    console.log('this.context', this.context);
     return <p>字符串a: {this.context.yideng}</p>;
     // return (
     //   <Consumer>

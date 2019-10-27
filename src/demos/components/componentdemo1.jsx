@@ -1,64 +1,66 @@
-import React, { Component, PureComponent, Profiler } from 'react'
-
-export class Info extends Component {
-
-  shouldComponentUpdate(newProps) {
-    if (newProps.data === this.props.data) {
-      return false
-    }
+import React from 'react';
+import { unstable_batchedUpdates as batchedUpdates } from "react-dom";
+const { Component } = React;
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
   }
-
-  render() {
-    console.log('Info 更新');
-    return <div>{this.props.data}</div>
-  }
-}
-
-// export const Info = React.memo((props) => {
-//   console.log('Info 更新');
-//   return <div>{props.data}</div> 
-// })
-
-export default class ComponentDemo extends Component {
-
-  state = {
-    count: 1,
-    info: '这是一个info组件'
-  }
-
-  addCount = () => {
+  // 先执行interactiveUpdates$1
+  test(){
     this.setState({
       count: this.state.count + 1
-    })
+    });
+    this.setState({
+      count: this.state.count + 1
+    });
   }
-
-  onRenderCallback = (
-    id, // 发生提交的 Profiler 树的 “id”
-    phase, // "mount" （如果组件树刚加载） 或者 "update" （如果它重渲染了）之一
-    actualDuration, // 本次更新 committed 花费的渲染时间
-    baseDuration, // 估计不使用 memoization 的情况下渲染整颗子树需要的时间
-    startTime, // 本次更新中 React 开始渲染的时间
-    commitTime, // 本次更新中 React committed 的时间
-    interactions // 属于本次更新的 interactions 的集合
-  ) => {
-    // 合计或记录渲染时间。。。
-    console.log('id', id);
-    console.log('id', phase);
-    console.log('actualDuration', actualDuration);
-    console.log('baseDuration', baseDuration);
-    console.log('startTime', startTime);
-    console.log('commitTime', commitTime);
-    console.log('interactions', interactions);
+  componentDidMount() {
+    let me = this;
+    // isRender = false
+    // 但现在还处于生命周期里
+    me.setState({
+      count: me.state.count + 1
+    });
+    console.log("第一次执行setState", me.state.count);    // 打印 
+    me.setState({
+      count: me.state.count + 1
+    });
+    console.log("第二次执行setState", me.state.count);    // 打印  
+    setTimeout(function () {
+      // if (expirationTime === Sync) {
+      //   performSyncWork();
+      // }
+      me.setState({
+        count: me.state.count + 1
+      });
+      console.log('setTimeout里执行setState', me.state.count);   // 打印  
+    }, 0);
+    setTimeout(function () {
+      // 等fn执行完毕后，统一执行performSyncWork
+      // isBatchingUpdates=true
+      // if (!isBatchingUpdates && !isRendering) {
+      //   performSyncWork();
+      // }
+      batchedUpdates(() => {
+        me.setState({
+          count: me.state.count + 1  
+        })
+      })
+      console.log('batchedUpdates里执行setState', me.state.count);   // 打印  
+    }, 0);
+    console.log('最后', me.state.count);   // 打印 
   }
-
   render() {
-    const { count, info } = this.state
-    return <div className="component-demo-wrapper">
-      <Profiler id="homeProfile" onRender={this.onRenderCallback} >
-        <Info data={info} />
-        <div><span>{count}</span></div>
-        <button onClick={this.addCount}>点击新增button</button>
-      </Profiler>
-    </div>
+    return (
+      <div>
+        <h1>{this.state.count}</h1>
+        <button onClick={this.test.bind(this)}>增加count</button>
+      </div>
+    );
   }
 }
+
+export default App;

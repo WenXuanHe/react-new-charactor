@@ -7,7 +7,7 @@ import PureDemo from './demos/components/puredemo';
 //函数组件
 import FunctionalDemo from './demos/components/functionaldemo';
 //高阶组件 Higher-Order Components
-import HOCDemo from './demos/components/hocdemo';
+import HOCDemo from './demos/components/hocdemo1';
 //组件插槽 Higher-Order Components
 import PortalsDemo from './demos/components/portalsdemo';
 //异步组件和Suspense组件

@@ -45,6 +45,10 @@ import React, { Component } from "react";
 // }
 //##高阶组件之后的代码
 //注值 localStorage.username = "老袁"
+
+// 把组件作为一个参数传递
+// 返回一个新的组件
+// 抽出的公共逻辑
 const wrapWithUsername = WrappedComponent => {
   class NewComponent extends Component {
     constructor() {
@@ -86,7 +90,8 @@ class Greeting extends Component {
   render() {
     return (
       <React.Fragment>
-        <Welcome /> <Goodbye />
+        <Welcome /> 
+        <Goodbye />
       </React.Fragment>
     );
   }

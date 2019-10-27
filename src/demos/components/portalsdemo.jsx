@@ -2,6 +2,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import "./component.css"
+
+// React.createPortal(React组件， 挂载到的dom元素)
+// ReactDOM.render(react组件， 挂载到的dom元素)
+
 //组件插槽
 const portalElm = document.createElement('div');
 portalElm.className="txtcenter"

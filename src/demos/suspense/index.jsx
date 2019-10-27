@@ -4,7 +4,9 @@ import "./suspense.css";
 import { useFetch } from "react-hooks-fetch";
 // console.log("异步加载数据", useFetch);
 //动态加载组件
+// webpack import() 和 react-loadable  来做代码的异步加载
 const LazyComp = lazy(() => import("./lazy"));
+// import Lazy from  "./lazy"
 
 function fetchApi() {
   const promise = new Promise(resolve => {
@@ -33,6 +35,7 @@ const createFetcher = promiseTask => {
     return ref;
   };
 };
+// 作为一个默认的范式，来直接调用
 const requestData = createFetcher(fetchApi);
 function SuspenseComp() {
   // const { error, data } = useFetch("http://localhost:8080/test.json");
@@ -53,6 +56,6 @@ export default () => (
     }
   >
     <SuspenseComp />
-    <LazyComp />
+    {/* <LazyComp /> */}
   </Suspense>
 );
